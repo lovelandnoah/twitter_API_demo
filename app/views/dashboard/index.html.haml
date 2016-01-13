@@ -1,0 +1,27 @@
+%div.row.card
+	.card-content	
+		%div.col.m4
+			%h3 Our Twitter!
+		%div.col.m8
+			= form_tag({controller:'dashboard', action: 'create'}, method: :post) do
+				= text_field_tag 'text', nil, {required: true}
+				= submit_tag 'Submit a Tweet'
+%div.row
+	.card.col.m8.cyan.pink-text	
+		.card-content	
+			%div		
+				%ul
+					- @tweets.each do |tweet|
+						%li
+							= "#{tweet.user.screen_name}: #{tweet.text}"
+	.card.col.m4.red
+		.card-content
+			%div
+				- @followers.each do |follower|
+					= "#{follower.name}"
+					|
+%div.row
+	.card.blue
+		.card-content
+			%div
+				= react_component "Search"
